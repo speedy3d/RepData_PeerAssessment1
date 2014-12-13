@@ -82,16 +82,29 @@ sum(complete.cases(activity)==FALSE)
 The following code will create a new dataset and replace the missing number of steps with the average number of steps for each interval. 
 
 ```{r}
-#Create new dataset to be filled and get the levels for use with for loop
+#Create new dataset to be filled and get the interval levels for use with for loop
 complete_activity <- activity
 count <- as.numeric(levels(factor(complete_activity$interval)))
 
-#Fill in the number of steps for 5-min intervals with missing values using a for loop
+#Fill in the number of steps for 5-min intervals (using previously calculated steps_per_interval means) with missing values using a for loop
 for (i in count) {
-  complete_activity
-}
-  
+  complete_activity[is.na(complete_activity$steps) & complete_activity$interval == i, 1] <- steps_per_interval[names(steps_per_interval) == i][[1]]
+} 
+```
+
+Now we will create new vector of intervals, using the newly imputed data, using tapply just as we did before.
+
+```{r}
+complete_steps_per_interval <- tapply(complete_activity$steps, list(complete_activity$date), sum)
+```
+
+Next, the following code will create a histogram of the total number of steps taken each day for the newly imputed data. 
+
+```{r}
+hist(complete_steps_per_interval, breaks=25, col="red", main="Total Steps Per Day, Imputed Data", xlab="The Total Steps Per Day", ylab="Frequency")
 ```
 
 ***
 ## Are there differences in activity patterns between weekdays and weekends?
+
+
