@@ -119,7 +119,7 @@ count &lt;- as.numeric(levels(factor(complete_activity$interval)))
 
 #Fill in the number of steps for 5-min intervals (using previously calculated steps_per_interval means) with missing values using a for loop
 for (i in count) {
-  complete_activity[is.na(complete_activity$steps) &amp; complete_activity$interval == i, 1] &lt;- steps_per_interval[names(steps_per_interval) == i][[1]]
+  complete_activity[is.na(complete_activity$steps) &amp; complete_activity$interval==i, 1] &lt;- steps_per_interval[names(steps_per_interval)==i][[1]]
 } </code></pre>
 <p>Now we will create new vector of intervals, using the newly imputed data, using tapply just as we did before.</p>
 <pre class="r"><code>complete_steps_per_interval &lt;- tapply(complete_activity$steps, list(complete_activity$date), sum)</code></pre>
@@ -137,6 +137,16 @@ for (i in count) {
 </div>
 <div id="are-there-differences-in-activity-patterns-between-weekdays-and-weekends" class="section level2">
 <h2>Are there differences in activity patterns between weekdays and weekends?</h2>
+<p>We will create a new variable in the dataset to represent a weekday or a weekend day.</p>
+<pre class="r"><code>#find the days that are weekdays and label them as either weekday or weekend
+complete_activity &lt;- data.frame(complete_activity, weekday=FALSE)
+weekdays &lt;- weekdays(as.Date(complete_activity$date)) %in% c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)
+complete_activity[weekdays, ]$weekday &lt;- TRUE</code></pre>
+<p>How many weekends or weekdays are represented in the completed data set?</p>
+<pre class="r"><code>nrow(complete_activity$weekday == TRUE)</code></pre>
+<pre><code>## NULL</code></pre>
+<pre class="r"><code>nrow(complete_activity$weekday == FALSE)</code></pre>
+<pre><code>## NULL</code></pre>
 </div>
 
 

@@ -136,7 +136,7 @@ count <- as.numeric(levels(factor(complete_activity$interval)))
 
 #Fill in the number of steps for 5-min intervals (using previously calculated steps_per_interval means) with missing values using a for loop
 for (i in count) {
-  complete_activity[is.na(complete_activity$steps) & complete_activity$interval == i, 1] <- steps_per_interval[names(steps_per_interval) == i][[1]]
+  complete_activity[is.na(complete_activity$steps) & complete_activity$interval==i, 1] <- steps_per_interval[names(steps_per_interval)==i][[1]]
 } 
 ```
 
@@ -181,5 +181,34 @@ Median increased slightly compared to the previous dataset, but changes overall 
 
 ***
 ## Are there differences in activity patterns between weekdays and weekends?
+
+We will create a new variable in the dataset to represent a weekday or a weekend day. 
+
+
+```r
+#find the days that are weekdays and label them as either weekday or weekend
+complete_activity <- data.frame(complete_activity, weekday=FALSE)
+weekdays <- weekdays(as.Date(complete_activity$date)) %in% c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+complete_activity[weekdays, ]$weekday <- TRUE
+```
+
+How many weekends or weekdays are represented in the completed data set? 
+
+
+```r
+nrow(complete_activity$weekday == TRUE)
+```
+
+```
+## NULL
+```
+
+```r
+nrow(complete_activity$weekday == FALSE)
+```
+
+```
+## NULL
+```
 
 
