@@ -222,18 +222,18 @@ steps_by_int_week <- tapply(complete_activity$steps, list(complete_activity$inte
 
 library(reshape2)
 steps_by_int_week <- melt(steps_by_int_week, varnames=c("int", "weekday"))
-steps_by_int_week$weekday <- factor(steps_by_int_week$weekday, labels=c("weekend", "weekday"))
+steps_by_int_week$weekday <- factor(steps_by_int_week$weekday, labels=c("Weekend", "Weekday"))
 head(steps_by_int_week)
 ```
 
 ```
 ##   int weekday       value
-## 1   0 weekend 0.214622642
-## 2   5 weekend 0.042452830
-## 3  10 weekend 0.016509434
-## 4  15 weekend 0.018867925
-## 5  20 weekend 0.009433962
-## 6  25 weekend 3.511792453
+## 1   0 Weekend 0.214622642
+## 2   5 Weekend 0.042452830
+## 3  10 Weekend 0.016509434
+## 4  15 Weekend 0.018867925
+## 5  20 Weekend 0.009433962
+## 6  25 Weekend 3.511792453
 ```
 
 Create a plot containing a time series comparing weekday or weekend data in the new complete dataset. 

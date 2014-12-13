@@ -146,7 +146,7 @@ steps_by_int_week <- tapply(complete_activity$steps, list(complete_activity$inte
 
 library(reshape2)
 steps_by_int_week <- melt(steps_by_int_week, varnames=c("int", "weekday"))
-steps_by_int_week$weekday <- factor(steps_by_int_week$weekday, labels=c("weekend", "weekday"))
+steps_by_int_week$weekday <- factor(steps_by_int_week$weekday, labels=c("Weekend", "Weekday"))
 head(steps_by_int_week)
 ```
 
