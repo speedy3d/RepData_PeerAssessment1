@@ -24,7 +24,7 @@ Next, we will get the first few rows of the data
 head(activity)
 ```
 
-
+***
 ## What is mean total number of steps taken per day?
 
 To calculate the mean total number of steps taken per day we first must find the total steps taken per day. We must also make sure to remove "NA" values before we can calculate the sum. This code chuck will calculate the steps per day and output the head of the new dataset which includes the total steps per day.
@@ -47,6 +47,7 @@ mean(steps_per_day, na.rm=TRUE)
 median(steps_per_day, na.rm=TRUE)
 ```
 
+***
 ## What is the average daily activity pattern?
 
 The following code gets the average steps per interval and outputs the first few rows of the data.
@@ -69,6 +70,7 @@ highest_steps <- which.max(steps_per_interval)
 names(highest_steps)
 ```
 
+***
 ## Imputing missing values
 
 Now we will create a new dataset that will fill in missing datapoints with the average steps taken per interval where data is missing. First we will report the total number of missing values from the original dataset.
@@ -77,6 +79,19 @@ Now we will create a new dataset that will fill in missing datapoints with the a
 sum(complete.cases(activity)==FALSE)
 ```
 
+The following code will create a new dataset and replace the missing number of steps with the average number of steps for each interval. 
 
+```{r}
+#Create new dataset to be filled and get the levels for use with for loop
+complete_activity <- activity
+count <- as.numeric(levels(factor(complete_activity$interval)))
 
+#Fill in the number of steps for 5-min intervals with missing values using a for loop
+for (i in count) {
+  complete_activity
+}
+  
+```
+
+***
 ## Are there differences in activity patterns between weekdays and weekends?
