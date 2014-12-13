@@ -65,11 +65,13 @@ plot(names(steps_per_interval), steps_per_interval, type="l", main="Daily Activi
 The following code will determine which 5-minute interval contains the highest number of steps
 
 ```{r}
-max(steps_per_interval)
+highest_steps <- which.max(steps_per_interval)
+names(highest_steps)
 ```
 
 ## Imputing missing values
 
+Now we will create a new dataset that will fill in missing datapoints with the average steps taken per interval
 
 
 ## Are there differences in activity patterns between weekdays and weekends?

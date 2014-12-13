@@ -103,11 +103,12 @@ The following code will determine which 5-minute interval contains the highest n
 
 
 ```r
-max(steps_per_interval)
+highest_steps <- which.max(steps_per_interval)
+names(highest_steps)
 ```
 
 ```
-## [1] 206.1698
+## [1] "835"
 ```
 
 ## Imputing missing values
