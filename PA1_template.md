@@ -221,18 +221,18 @@ Reshape the data so that it is not as noisy and show the first few rows of the n
 steps_by_int_week <- tapply(complete_activity$steps, list(complete_activity$interval, complete_activity$weekday), mean)
 
 library(reshape2)
-steps_by_int_week <- melt(steps_by_int_week, varnames=c("interval", "weekday"))
+steps_by_int_week <- melt(steps_by_int_week, varnames=c("int", "weekday"))
 head(steps_by_int_week)
 ```
 
 ```
-##   interval weekday       value
-## 1        0   FALSE 0.214622642
-## 2        5   FALSE 0.042452830
-## 3       10   FALSE 0.016509434
-## 4       15   FALSE 0.018867925
-## 5       20   FALSE 0.009433962
-## 6       25   FALSE 3.511792453
+##   int weekday       value
+## 1   0   FALSE 0.214622642
+## 2   5   FALSE 0.042452830
+## 3  10   FALSE 0.016509434
+## 4  15   FALSE 0.018867925
+## 5  20   FALSE 0.009433962
+## 6  25   FALSE 3.511792453
 ```
 
 Create a plot containing a time series comparing weekday or weekend data in the new complete dataset. 
@@ -240,7 +240,7 @@ Create a plot containing a time series comparing weekday or weekend data in the 
 
 ```r
 library(lattice)
-xyplot(value ~ interval | factor(weekday), steps_by_int_week, type = "l", layout = c(1, 2), xlab = "Interval", ylab = "Number of steps")
+xyplot(steps_by_int_week$value ~ steps_by_int_week$int | steps_by_int_week$weekday, type = "l", layout = c(1, 2), xlab = "Interval", ylab = "Number of steps")
 ```
 
 ![](./PA1_template_files/figure-html/unnamed-chunk-18-1.png) 
