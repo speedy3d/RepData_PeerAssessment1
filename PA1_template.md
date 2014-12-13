@@ -214,4 +214,12 @@ sum(complete_activity$weekday == FALSE)
 ## [1] 4608
 ```
 
+Create a plot containing a time series comparing weekday or weekend data in the new complete dataset. From this we can discern a pattern such that 
 
+
+```r
+library(lattice)
+xyplot(complete_activity$steps ~ complete_activity$interval | factor(complete_activity$weekday), type = "l", layout = c(1, 2), xlab = "Interval", ylab = "Number of steps")
+```
+
+![](./PA1_template_files/figure-html/unnamed-chunk-17-1.png) 
