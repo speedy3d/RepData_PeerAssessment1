@@ -147,7 +147,7 @@ Now we will create new vector of intervals, using the newly imputed data, using 
 complete_steps_per_interval <- tapply(complete_activity$steps, list(complete_activity$date), sum)
 ```
 
-Next, the following code will create a histogram of the total number of steps taken each day. 
+Next, the following code will create a histogram of the total number of steps taken each day for the newly imputed data. 
 
 
 ```r
@@ -156,6 +156,30 @@ hist(complete_steps_per_interval, breaks=25, col="red", main="Total Steps Per Da
 
 ![](./PA1_template_files/figure-html/unnamed-chunk-12-1.png) 
 
+We can see that the shape of the data did not appear to change. However, the frequency did seem to increase quite a bit compated to the previous dataset. 
+
+To get a more exact overview of the data we will calculate the new mean and median.
+
+
+```r
+mean(complete_steps_per_interval)
+```
+
+```
+## [1] 10766.19
+```
+
+```r
+median(complete_steps_per_interval)
+```
+
+```
+## [1] 10766.19
+```
+
+Median increased slightly compared to the previous dataset, but changes overall were very negligible. 
 
 ***
 ## Are there differences in activity patterns between weekdays and weekends?
+
+
