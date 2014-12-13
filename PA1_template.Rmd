@@ -146,6 +146,7 @@ steps_by_int_week <- tapply(complete_activity$steps, list(complete_activity$inte
 
 library(reshape2)
 steps_by_int_week <- melt(steps_by_int_week, varnames=c("int", "weekday"))
+steps_by_int_week$weekday <- factor(steps_by_int_week$weekday, labels=c("weekend", "weekday"))
 head(steps_by_int_week)
 ```
 
@@ -153,7 +154,7 @@ Create a plot containing a time series comparing weekday or weekend data in the 
 
 ```{r}
 library(lattice)
-xyplot(steps_by_int_week$value ~ steps_by_int_week$int | steps_by_int_week$weekday, type = "l", layout = c(1, 2), xlab = "Interval", ylab = "Number of steps")
+xyplot(steps_by_int_week$value ~ steps_by_int_week$int | steps_by_int_week$weekday, type="l", col="red", lwd=2, main="Average Number of Steps Taken per Interval on Weekends vs Weekdays", layout = c(1, 2), xlab = "Time Interval", ylab = "Average Number of Steps")
 ```
 
 From this we can discern a pattern such that more steps are taken on th weekend, but there is a higher concentration of steps in the morning during weekdays.

@@ -222,17 +222,18 @@ steps_by_int_week <- tapply(complete_activity$steps, list(complete_activity$inte
 
 library(reshape2)
 steps_by_int_week <- melt(steps_by_int_week, varnames=c("int", "weekday"))
+steps_by_int_week$weekday <- factor(steps_by_int_week$weekday, labels=c("weekend", "weekday"))
 head(steps_by_int_week)
 ```
 
 ```
 ##   int weekday       value
-## 1   0   FALSE 0.214622642
-## 2   5   FALSE 0.042452830
-## 3  10   FALSE 0.016509434
-## 4  15   FALSE 0.018867925
-## 5  20   FALSE 0.009433962
-## 6  25   FALSE 3.511792453
+## 1   0 weekend 0.214622642
+## 2   5 weekend 0.042452830
+## 3  10 weekend 0.016509434
+## 4  15 weekend 0.018867925
+## 5  20 weekend 0.009433962
+## 6  25 weekend 3.511792453
 ```
 
 Create a plot containing a time series comparing weekday or weekend data in the new complete dataset. 
@@ -240,7 +241,7 @@ Create a plot containing a time series comparing weekday or weekend data in the 
 
 ```r
 library(lattice)
-xyplot(steps_by_int_week$value ~ steps_by_int_week$int | steps_by_int_week$weekday, type = "l", layout = c(1, 2), xlab = "Interval", ylab = "Number of steps")
+xyplot(steps_by_int_week$value ~ steps_by_int_week$int | steps_by_int_week$weekday, type="l", col="red", lwd=2, main="Average Number of Steps Taken per Interval on Weekends vs Weekdays", layout = c(1, 2), xlab = "Time Interval", ylab = "Average Number of Steps")
 ```
 
 ![](./PA1_template_files/figure-html/unnamed-chunk-18-1.png) 
