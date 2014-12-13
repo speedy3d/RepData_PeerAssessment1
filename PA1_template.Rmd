@@ -18,17 +18,34 @@ activity$date <- as.Date(activity$date)
 activity$interval <- as.numeric(activity$interval)
 ```
 
-Next, we will get the first few rows as well as a brief summary of the data
+Next, we will get the first few rows of the data
 
 ```{r}
 head(activity)
-summary(activity)
 ```
 
 
 ## What is mean total number of steps taken per day?
 
+To calculate the mean total number of steps taken per day we first must find the total steps taken per day. We must also make sure to remove "NA" values before we can calculate the sum. This code chuck will calculate the steps per day and output the head of the new dataset which includes the total steps per day.
 
+```{r}
+steps_per_day <- tapply(na.omit(activity)$steps, list(na.omit(activity)$date), sum)
+head(steps_per_day)
+```
+
+Create a histogram of the total steps taken per day.
+
+```{r}
+hist(steps_per_day, breaks=25, col="red", main="Total Steps Per Day", xlab="The Total Steps Per Day", ylab="Frequency")
+```
+
+Find the mean and median of steps per day.   
+
+```{r}
+mean(steps_per_day, na.rm=TRUE)
+median(steps_per_day, na.rm=TRUE)
+```
 
 ## What is the average daily activity pattern?
 

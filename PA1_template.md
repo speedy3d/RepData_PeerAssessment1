@@ -14,7 +14,7 @@ activity$date <- as.Date(activity$date)
 activity$interval <- as.numeric(activity$interval)
 ```
 
-Next, we will get the first few rows as well as a brief summary of the data
+Next, we will get the first few rows of the data
 
 
 ```r
@@ -31,25 +31,49 @@ head(activity)
 ## 6    NA 2012-10-01       25
 ```
 
-```r
-summary(activity)
-```
-
-```
-##      steps             date               interval     
-##  Min.   :  0.00   Min.   :2012-10-01   Min.   :   0.0  
-##  1st Qu.:  0.00   1st Qu.:2012-10-16   1st Qu.: 588.8  
-##  Median :  0.00   Median :2012-10-31   Median :1177.5  
-##  Mean   : 37.38   Mean   :2012-10-31   Mean   :1177.5  
-##  3rd Qu.: 12.00   3rd Qu.:2012-11-15   3rd Qu.:1766.2  
-##  Max.   :806.00   Max.   :2012-11-30   Max.   :2355.0  
-##  NA's   :2304
-```
-
 
 ## What is mean total number of steps taken per day?
 
+To calculate the mean total number of steps taken per day we first must find the total steps taken per day. We must also make sure to remove "NA" values before we can calculate the sum. This code chuck will calculate the steps per day and output the head of the new dataset which includes the total steps per day.
 
+
+```r
+steps_per_day <- tapply(na.omit(activity)$steps, list(na.omit(activity)$date), sum)
+head(steps_per_day)
+```
+
+```
+## 2012-10-02 2012-10-03 2012-10-04 2012-10-05 2012-10-06 2012-10-07 
+##        126      11352      12116      13294      15420      11015
+```
+
+Create a histogram of the total steps taken per day.
+
+
+```r
+hist(steps_per_day, breaks=25, col="red", main="Total Steps Per Day", xlab="The Total Steps Per Day", ylab="Frequency")
+```
+
+![](./PA1_template_files/figure-html/unnamed-chunk-4-1.png) 
+
+Find the mean and median of steps per day.   
+
+
+```r
+mean(steps_per_day, na.rm=TRUE)
+```
+
+```
+## [1] 10766.19
+```
+
+```r
+median(steps_per_day, na.rm=TRUE)
+```
+
+```
+## [1] 10765
+```
 
 ## What is the average daily activity pattern?
 
