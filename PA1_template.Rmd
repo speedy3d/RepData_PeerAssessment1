@@ -139,7 +139,7 @@ How many weekends are in the new dataset?
 sum(complete_activity$weekday == FALSE)
 ```
 
-Reshape the data so that it is not as noisy and show the first few rows of the newly reshapred dataset.
+Reshape the data so that it is not as noisy and show the first few rows of the newly reshapred dataset. Also, change TRUE and FALSE values for weekday to either "weekday" or "weekend"
 
 ```{r}
 steps_by_int_week <- tapply(complete_activity$steps, list(complete_activity$interval, complete_activity$weekday), mean)

@@ -214,7 +214,7 @@ sum(complete_activity$weekday == FALSE)
 ## [1] 4608
 ```
 
-Reshape the data so that it is not as noisy and show the first few rows of the newly reshapred dataset.
+Reshape the data so that it is not as noisy and show the first few rows of the newly reshapred dataset. Also, change TRUE and FALSE values for weekday to either "weekday" or "weekend"
 
 
 ```r
