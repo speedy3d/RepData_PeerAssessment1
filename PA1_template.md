@@ -113,6 +113,16 @@ names(highest_steps)
 
 ## Imputing missing values
 
+Now we will create a new dataset that will fill in missing datapoints with the average steps taken per interval. First we will report the total number of missing values from the original dataset.
+
+
+```r
+sum(complete.cases(activity)==FALSE)
+```
+
+```
+## [1] 2304
+```
 
 
 ## Are there differences in activity patterns between weekdays and weekends?

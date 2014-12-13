@@ -106,6 +106,9 @@ names(highest_steps)</code></pre>
 </div>
 <div id="imputing-missing-values" class="section level2">
 <h2>Imputing missing values</h2>
+<p>Now we will create a new dataset that will fill in missing datapoints with the average steps taken per interval. First we will report the total number of missing values from the original dataset.</p>
+<pre class="r"><code>sum(complete.cases(activity)==FALSE)</code></pre>
+<pre><code>## [1] 2304</code></pre>
 </div>
 <div id="are-there-differences-in-activity-patterns-between-weekdays-and-weekends" class="section level2">
 <h2>Are there differences in activity patterns between weekdays and weekends?</h2>
