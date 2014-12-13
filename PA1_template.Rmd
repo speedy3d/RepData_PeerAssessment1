@@ -34,13 +34,13 @@ steps_per_day <- tapply(na.omit(activity)$steps, list(na.omit(activity)$date), s
 head(steps_per_day)
 ```
 
-Create a histogram of the total steps taken per day.
+Create a simple histogram of the total steps taken per day.
 
 ```{r}
 hist(steps_per_day, breaks=25, col="red", main="Total Steps Per Day", xlab="The Total Steps Per Day", ylab="Frequency")
 ```
 
-Find the mean and median of steps per day.   
+Find the mean and median of steps per day. Ignore missing values.   
 
 ```{r}
 mean(steps_per_day, na.rm=TRUE)
@@ -49,7 +49,24 @@ median(steps_per_day, na.rm=TRUE)
 
 ## What is the average daily activity pattern?
 
+The following code gets the average steps per interval and outputs the first few rows of the data.
 
+```{r}
+steps_per_interval <- tapply(na.omit(activity)$steps, list(na.omit(activity)$interval), mean)
+head(steps_per_interval)
+```
+
+The following code will make a time series plot of the 5 minute interval and average number of steps taken averaged across all days.
+
+```{r}
+plot(names(steps_per_interval), steps_per_interval, type="l", main="Daily Activity Pattern", xlab="5 Minute Interval", ylab="Average Steps Per Interval", col="red", lwd=2)
+```
+
+The following code will determine which 5-minute interval contains the highest number of steps
+
+```{r}
+max(steps_per_interval)
+```
 
 ## Imputing missing values
 
