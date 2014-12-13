@@ -186,29 +186,32 @@ We will create a new variable in the dataset to represent a weekday or a weekend
 
 
 ```r
-#find the days that are weekdays and label them as either weekday or weekend
+#find the days that are weekdays and label them as either weekday or weekend (assigning true or false)
 complete_activity <- data.frame(complete_activity, weekday=FALSE)
 weekdays <- weekdays(as.Date(complete_activity$date)) %in% c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
 complete_activity[weekdays, ]$weekday <- TRUE
 ```
 
-How many weekends or weekdays are represented in the completed data set? 
+How many weekdays are in the new dataset?
 
 
 ```r
-nrow(complete_activity$weekday == TRUE)
+sum(complete_activity$weekday == TRUE)
 ```
 
 ```
-## NULL
+## [1] 12960
 ```
+
+How many weekends are in the new dataset?
+
 
 ```r
-nrow(complete_activity$weekday == FALSE)
+sum(complete_activity$weekday == FALSE)
 ```
 
 ```
-## NULL
+## [1] 4608
 ```
 
 

@@ -138,15 +138,16 @@ for (i in count) {
 <div id="are-there-differences-in-activity-patterns-between-weekdays-and-weekends" class="section level2">
 <h2>Are there differences in activity patterns between weekdays and weekends?</h2>
 <p>We will create a new variable in the dataset to represent a weekday or a weekend day.</p>
-<pre class="r"><code>#find the days that are weekdays and label them as either weekday or weekend
+<pre class="r"><code>#find the days that are weekdays and label them as either weekday or weekend (assigning true or false)
 complete_activity &lt;- data.frame(complete_activity, weekday=FALSE)
 weekdays &lt;- weekdays(as.Date(complete_activity$date)) %in% c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)
 complete_activity[weekdays, ]$weekday &lt;- TRUE</code></pre>
-<p>How many weekends or weekdays are represented in the completed data set?</p>
-<pre class="r"><code>nrow(complete_activity$weekday == TRUE)</code></pre>
-<pre><code>## NULL</code></pre>
-<pre class="r"><code>nrow(complete_activity$weekday == FALSE)</code></pre>
-<pre><code>## NULL</code></pre>
+<p>How many weekdays are in the new dataset?</p>
+<pre class="r"><code>sum(complete_activity$weekday == TRUE)</code></pre>
+<pre><code>## [1] 12960</code></pre>
+<p>How many weekends are in the new dataset?</p>
+<pre class="r"><code>sum(complete_activity$weekday == FALSE)</code></pre>
+<pre><code>## [1] 4608</code></pre>
 </div>
 
 
