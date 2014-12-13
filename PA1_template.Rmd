@@ -142,6 +142,12 @@ sum(complete_activity$weekday == FALSE)
 Create a plot containing a time series comparing weekday or weekend data in the new complete dataset. From this we can discern a pattern such that 
 
 ```{r}
+#reshape data so plot is not as noisy
+steps_by_int_week <- tapply(complete_activity$steps, list(complete_activity$interval, complete_activity$weekday), mean)
+
+
+
+#Create the plot
 library(lattice)
-xyplot(complete_activity$steps ~ complete_activity$interval | factor(complete_activity$weekday), type = "l", layout = c(1, 2), xlab = "Interval", ylab = "Number of steps")
+xyplot(steps ~ interval | factor(weekday), steps_by_int_week, type = "l", layout = c(1, 2), xlab = "Interval", ylab = "Number of steps")
 ```
